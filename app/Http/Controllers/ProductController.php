@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\LinkGenerator;
 use App\Helpers\ResponseJson;
 use App\Http\Requests\Product\CreateProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
+use App\Http\Requests\Product\UpdateStatusProductRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -39,6 +41,26 @@ class ProductController extends Controller
         }
         return ResponseJson::successResponse($message, $data);
     }
+    public function update(UpdateProductRequest $request, $id)
+    {
+        [$proceed, $message, $data] = (new ProductService())->updateProduct($request->all(), $id);
+
+        if (!$proceed) {
+            return ResponseJson::failedResponse($message, $data);
+        }
+        return ResponseJson::successResponse($message, $data);
+    }
+    public function updateStatus(UpdateStatusProductRequest $request, $id)
+    {
+        [$proceed, $message, $data] = (new ProductService())->updateStatusProduct($request->all(), $id);
+
+        if (!$proceed) {
+            return ResponseJson::failedResponse($message, $data);
+        }
+        return ResponseJson::successResponse($message, $data);
+    }
+    //> Todo update product
+
     public function show($id)
     {
         [$proceed, $message, $data] = (new ProductService())->detailProduk($id);

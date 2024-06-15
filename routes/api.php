@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/create', [ProductController::class, 'create']);
             Route::post('/update/{id}', [ProductController::class, 'update']);
             Route::delete('/delete/{id}', [ProductController::class, 'delete']);
+            Route::post('/update-status/{id}', [ProductController::class, 'updateStatus']);
             Route::get('/{id}', [ProductController::class, 'show']);
         });
         //> Product link
@@ -62,6 +63,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         });
         //> themes
         Route::prefix('themes')->group(function () {
+            Route::get('/', [ThemeController::class, 'index']);
+            Route::post('/apply/{id}', [ThemeController::class, 'apply']);
+        });
+        //> TODO Store
+        Route::prefix('store')->group(function () {
+
+            //> update store
             Route::get('/', [ThemeController::class, 'index']);
             Route::post('/apply/{id}', [ThemeController::class, 'apply']);
         });

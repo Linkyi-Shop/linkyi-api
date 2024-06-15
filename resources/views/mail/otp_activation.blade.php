@@ -2,38 +2,35 @@
 
 @section('content')
     <tr>
-        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-            <div style="font-family:helvetica;font-size:18px;font-weight:700;line-height:1.5;text-align:left;color:#262626;">
-                Hai {{ $name }},
-            </div>
+        <td style="padding: 48px 24px 0; color: #161c2d; font-size: 18px; font-weight: 600;">
+            Hello, {{ $name }}
         </td>
     </tr>
-    @if ($type == 'activation')
-        <tr>
-            <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                <div
-                    style="font-family:helvetica;font-size:18px;font-weight:400;line-height:1.5;text-align:left;color:#262626;">
-                    Sebelum melanjutkan silahkan konfirmasi OTP anda sebelum
-                    <br>
-                    <b>{{ $expired }}</b>.
-                    <br>
-                    <p style="text-align: center; font-size: 32px; color: #1338b2"><b>{{ $code }}</b></p>
-                </div>
+    <tr>
+        @if ($type == 'activation')
+            <td style="padding: 15px 24px 15px; color: #353434;">
+                Untuk melakukan aktivasi akun silahkan konfirmasi OTP anda sebelum <br> <b>{{ $expired }}</b>
             </td>
-        </tr>
-    @endif
-    @if ($type == 'forgot-password')
-        <tr>
-            <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                <div
-                    style="font-family:helvetica;font-size:18px;font-weight:400;line-height:1.5;text-align:left;color:#262626;">
-                    Untuk memperbaharui password silahkan konfirmasi OTP anda sebelum
-                    <br>
-                    <b>{{ $expired }}</b>.
-                    <br>
-                    <p style="text-align: center; font-size: 32px; color: #1338b2"><b>{{ $code }}</b></p>
-                </div>
+        @else
+            <td style="padding: 15px 24px 15px; color: #353434;">
+                Untuk memperbaharui password silahkan konfirmasi OTP anda sebelum <br> <b>{{ $expired }}</b>
             </td>
-        </tr>
-    @endif
+        @endif
+
+    </tr>
+
+    <tr>
+        <td style="padding: 18px 24px;text-align: center;">
+            <input
+                style="width: 20%; text-align: center;padding: 12px 24px; outline: none; text-decoration: none; font-size: 18px; letter-spacing: 0.7px; transition: all 0.3s; font-weight: 600; border-radius: 6px; background-color: #ffffff; border: 1px solid #2f55d4; color: #2f55d4"
+                readonly value="{{ $code }}">
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 15px 24px 0; color: #353434;margin:bottom:10px">
+            Jika Anda tidak melakukannya, silahkan abaikan email ini atau
+            hubungi customer service kami.
+        </td>
+    </tr>
 @endsection

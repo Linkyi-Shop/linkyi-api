@@ -1,138 +1,64 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
-    xmlns:o="urn:schemas-microsoft-com:office:office">
+<html lang="en" dir="ltr">
 
 <head>
-    <title>
-    </title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-        #outlook a {
-            padding: 0;
-        }
+    <meta charset="utf-8" />
+    <title>Linkyi Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Version" content="v4.3.0" />
 
-        body {
-            margin: 0;
-            padding: 0;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-
-        table,
-        td {
-            border-collapse: collapse;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
-
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-            -ms-interpolation-mode: bicubic;
-        }
-
-        p {
-            display: block;
-            margin: 13px 0;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
-    </style>
-    <!--<![endif]-->
-    <style type="text/css">
-        @media only screen and (min-width:480px) {
-            .mj-column-per-100 {
-                width: 100% !important;
-                max-width: 100%;
-            }
-        }
-    </style>
-    <style media="screen and (min-width:480px)">
-        .moz-text-html .mj-column-per-100 {
-            width: 100% !important;
-            max-width: 100%;
-        }
-    </style>
-    <style type="text/css">
-        @media only screen and (max-width:480px) {
-            table.mj-full-width-mobile {
-                width: 100% !important;
-            }
-
-            td.mj-full-width-mobile {
-                width: auto !important;
-            }
-        }
-    </style>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/dist/assets/images/favicon.ico" />
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap" rel="stylesheet">
+    <!-- Main Css -->
+    <!-- <link href="css/style.css" rel="stylesheet" type="text/css" /> -->
 </head>
 
-<body style="word-spacing:normal;background-color:#F5F9FF;">
-    <div style="background-color:#F5F9FF;">
-        <div style="margin:0px auto;max-width:600px;">
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
-                style="width:100%;">
-                <tbody>
-                    <tr>
-                        <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-                            <div class="mj-column-per-100 mj-outlook-group-fix"
-                                style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                                <table border="0" cellpadding="0" cellspacing="0" role="presentation"
-                                    width="100%">
-                                    <tbody>
-                                        <tr>
-                                            <td
-                                                style="background-color:#ffffff;border-radius:5px;vertical-align:top;padding-top:20px;padding-right:10px;padding-bottom:20px;padding-left:10px;">
-                                                <table border="0" cellpadding="0" cellspacing="0"
-                                                    role="presentation" style="" width="100%">
-                                                    <tbody>
+<body style="font-family: Nunito, sans-serif; font-size: 15px; font-weight: 400;">
 
-                                                        <tr>
-                                                            <td align="center"
-                                                                style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
-                                                                <img style="margin-bottom: 10px;width:190px;"
-                                                                    src="https://storage.googleapis.com/linkyi-storage/assets/linkyshop.png"
-                                                                    alt="" srcset="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td align="center"
-                                                                style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                                <p
-                                                                    style="border-top:solid 1px #C4C4C4;font-size:1px;margin:0px auto;width:100%;">
-                                                                </p>
-                                                            </td>
-                                                        </tr>
-                                                        @yield('content')
+    <!-- Hero Start -->
+    <div style="margin-top: 50px;">
+        <table cellpadding="0" cellspacing="0"
+            style="font-family: Nunito, sans-serif; font-size: 15px; font-weight: 400; max-width: 600px; border: none; margin: 0 auto; border-radius: 6px; overflow: hidden; background-color: #fff; box-shadow: 0 0 3px rgba(60, 72, 88, 0.15);">
+            <thead>
+                <tr>
+                    <td align="center"
+                        style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
+                        <img style="margin-top:20px;margin-bottom: 5px;width:190px;"
+                            src="https://storage.googleapis.com/linkyi-storage/assets/linkyshop.png" alt=""
+                            srcset="">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                        <p style="border-top:solid 1px #C4C4C4;font-size:1px;margin:0px auto;width:100%;">
+                        </p>
+                    </td>
+                </tr>
+            </thead>
 
-                                                        <tr>
-                                                            <td align="center"
-                                                                style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                                <p
-                                                                    style="border-top:solid 1px #C4C4C4;font-size:1px;margin:0px auto;width:100%;">
-                                                                </p>
-                                                            </td>
-                                                        </tr>
+            <tbody>
 
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                @yield('content')
+
+                <tr>
+                    <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                        <br>
+                    </td>
+                </tr>
+                <tr style="margin-top:20px;">
+                    <td style="padding: 16px 8px; color: #8492a6; background-color: #f8f9fc; text-align: center;">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script> Linkyi Shop.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <!-- Hero End -->
 </body>
 
 </html>

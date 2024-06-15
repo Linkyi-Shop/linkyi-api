@@ -40,7 +40,7 @@ class ProductService
                             return [
                                 'id' => $item->id,
                                 'title' => $item->title,
-                                'price' => CurrencyHelper::currencyIDR($item->price),
+                                'price' => $item->price,
                                 'thumbnail' => $item->getThumbnail(),
                                 'category' => $item?->productCategory?->name,
                                 'is_active' => ($item->is_active == 1),
@@ -124,7 +124,7 @@ class ProductService
                 return [false, 'Produk tidak ditemukan', []];
             }
             //> check apakah katagori sudah ada
-            if ($product->category->name != $data['category']) {
+            if ($product?->productCategory?->name != $data['category']) {
                 $productCategory = ProductCategory::where(['name' => $data['category'], 'store_id' => $storeId])->first();
                 if (!$productCategory) {
                     $sequence = ProductCategory::where(['store_id' => $storeId])->count();
@@ -137,22 +137,55 @@ class ProductService
                 }
             }
 
-            if ($data['thumbnail']) {
-                LinkyiStorage::deleteProductThumbnail($product->thumbnail);
-                $thumbnail = LinkyiStorage::uploadProductThumbnail($data['thumbnail']);
-            }
 
-            //> create produk
-            $product->update([
+
+            $payload = [
                 'product_category_id' => $productCategory->id,
                 'title' => $data['title'],
-                'thumbnail' => $thumbnail,
                 'price' => $data['price'],
+            ];
+
+            if (isset($data['thumbnail'])) {
+                LinkyiStorage::deleteProductThumbnail($product->thumbnail);
+                $payload['thumbnail'] = LinkyiStorage::uploadProductThumbnail($data['thumbnail']);
+            }
+            if (isset($data['is_active'])) {
+                $payload['is_active'] = $data['is_active'];
+            }
+            //> create produk
+            $product->update($payload);
+
+            DB::commit();
+            return [true, 'Berhasil Memperbaharui Produk', []];
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            Log::error($exception);
+            return [false, 'Server is busy right now!', []];
+        }
+    }
+    public function updateStatusProduct($data, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $user = auth()->user();
+            $storeId = $user->store->id;
+            $product = Product::where(['id' => $id, 'store_id' => $storeId])->first();
+            if (!$product) {
+                return [false, 'Produk tidak ditemukan', []];
+            }
+
+            if ($data['is_active'] == 1) {
+                $message = "diaktifkan";
+            } else {
+                $message = "dinonaktifkan";
+            }
+            //> create produk
+            $product->update([
                 'is_active' => $data['is_active'],
             ]);
 
             DB::commit();
-            return [true, 'Berhasil Menambahkan Produk', []];
+            return [true, 'Produk berhasil ' . $message, []];
         } catch (\Throwable $exception) {
             DB::rollBack();
             Log::error($exception);
@@ -171,7 +204,7 @@ class ProductService
         $response = [
             'title' => $product->title,
             'thumbnail' => $product->getThumbnail(),
-            'price' => CurrencyHelper::currencyIDR($product->price),
+            'price' => $product->price,
             'is_active' => $product->is_active == 1,
             'links' => $product->linkProducts->map(function ($item) {
                 return [

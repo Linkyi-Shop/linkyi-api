@@ -29,7 +29,7 @@ class EmailActivationMemberRegister extends Mailable
         $data = [
             'name' => $this->data['name'],
             'type' => $this->data['type'],
-            'code' => $this->data['code'],
+            'code' => substr($this->data['code'], 0, 3) . ' ' . substr($this->data['code'], 3),
             'expired' => $this->data['expired'],
         ];
         $subject = 'Linkyi Shop : Konfirmasi Kode OTP Untuk aktivasai akun';

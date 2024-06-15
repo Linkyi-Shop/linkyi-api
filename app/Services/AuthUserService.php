@@ -29,6 +29,9 @@ class AuthUserService
                 // if ($userLogin->status == User::STATUS_DELETED) {
                 //     return $this->responseJson->responseTokenInvalid('Akun team belum aktif atau sudah dihapus');
                 // }
+                if ($userLogin->google_id && !$userLogin->password) {
+                    return [false, 'Silahkan lanjutkan dengan akun google', []];
+                }
                 if ($userLogin->status == User::STATUS_VERIFIED) {
 
 
@@ -188,7 +191,7 @@ class AuthUserService
     {
         try {
             DB::beginTransaction();
-            $user = User::whereEmail($email)->first();
+            $user = User::whereEmail($email)->whereStatus(User::STATUS_VERIFIED)->first();
             if ($user) {
 
                 $sendOTP = $this->sendOTPCodeToEmail($email, MemberOtp::TYPE_FORGOTPASSWORD);
@@ -199,7 +202,7 @@ class AuthUserService
                 DB::commit();
                 return [true, 'Silahkan konfirmasi Kode OTP untuk melanjutkan', []];
             } else {
-                return [false, 'Pastikan email anda terdaftar', []];
+                return [false, 'Pastikan email anda terdaftar dan sudah terverifikasi', []];
             }
         } catch (\Throwable $th) {
             DB::rollBack();
