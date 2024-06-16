@@ -15,6 +15,7 @@ class ThemeSeeder extends Seeder
     {
         Theme::create([
             'name' => "Orange Store",
+            'path' => "orange-store",
             'link' => "linkyi.shop/orange-store",
             'price' => 0,
             'thumbnail' => 'nothing.jpg',

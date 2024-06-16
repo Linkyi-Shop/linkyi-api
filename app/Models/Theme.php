@@ -10,7 +10,7 @@ class Theme extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['id', 'name', 'link', 'price', 'thumbnail', 'is_premium', 'is_active'];
+    protected $fillable = ['id', 'name', 'path', 'link', 'price', 'thumbnail', 'is_premium', 'is_active'];
 
     /**
      * The attributes that should be cast to native types.

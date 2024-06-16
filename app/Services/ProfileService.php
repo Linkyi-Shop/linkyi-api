@@ -281,6 +281,7 @@ class ProfileService
             if (!$storeProfile) {
                 return [false, 'Halaman tidak ditemukan', []];
             }
+
             $response = [
                 'store' => [
                     'name' => $storeProfile->name,
@@ -289,6 +290,10 @@ class ProfileService
                     'description' => $storeProfile->description,
                     'logo' => $storeProfile->getLogo(),
                     'verified' => $storeProfile?->statusVerification?->status,
+                ],
+                'theme' => [
+                    'name' => $storeProfile->storeTheme->theme->name,
+                    'path' => $storeProfile->storeTheme->theme->path,
                 ],
 
                 'links' => $storeProfile->bioLinks->map(function ($item) {

@@ -75,4 +75,27 @@ class LinkyiStorage
             return false;
         }
     }
+    public static function deleteObjectFile($filePath)
+    {
+        // Inisialisasi Google Cloud Storage client
+        $storage = new StorageClient([
+            'projectId' => env('GOOGLE_CLOUD_PROJECT_ID'),
+            'keyFilePath' => env('GOOGLE_CLOUD_KEY_FILE'),
+        ]);
+
+        // Mendapatkan bucket
+        $bucket = $storage->bucket(env('GOOGLE_CLOUD_STORAGE_BUCKET'));
+
+        // Mendapatkan object dari bucket berdasarkan file path
+        $object = $bucket->object($filePath);
+
+        // Memeriksa apakah object ada dan menghapusnya
+        if ($object->exists()) {
+            Log::info(json_encode($object));
+            $object->delete();
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

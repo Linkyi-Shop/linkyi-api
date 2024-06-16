@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialMediaController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StorePageController;
 use App\Http\Controllers\ThemeController;
 use Illuminate\Http\Request;
@@ -66,12 +67,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/', [ThemeController::class, 'index']);
             Route::post('/apply/{id}', [ThemeController::class, 'apply']);
         });
-        //> TODO Store
         Route::prefix('store')->group(function () {
-
-            //> update store
-            Route::get('/', [ThemeController::class, 'index']);
-            Route::post('/apply/{id}', [ThemeController::class, 'apply']);
+            Route::post('/update', [StoreController::class, 'update']);
         });
     });
 
@@ -105,6 +102,8 @@ Route::prefix('auth')->group(function () {
 Route::prefix('store')->group(function () {
     Route::get('/{store}', [StorePageController::class, 'profile']);
     Route::get('/{store}/products', [StorePageController::class, 'products']);
+    // TODO Detail product
+    Route::get('/{store}/products/{id}', [StorePageController::class, 'show']);
 });
 
 Route::get('jilogs-4j@', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

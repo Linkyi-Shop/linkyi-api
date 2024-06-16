@@ -59,7 +59,6 @@ class ProductController extends Controller
         }
         return ResponseJson::successResponse($message, $data);
     }
-    //> Todo update product
 
     public function show($id)
     {

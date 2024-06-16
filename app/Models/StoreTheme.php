@@ -25,4 +25,9 @@ class StoreTheme extends Model
         'expired' => 'date',
         'type' => 'string',  // Enum type can be cast to string or handled separately as required.
     ];
+
+    public function theme()
+    {
+        return $this->belongsTo(Theme::class, 'theme_id', 'id');
+    }
 }

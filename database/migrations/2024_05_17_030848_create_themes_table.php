@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('link');
+            $table->string('path');
             $table->string('price');
             $table->string('thumbnail');
             $table->tinyInteger('is_premium');
