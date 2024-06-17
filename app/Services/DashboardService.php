@@ -5,7 +5,9 @@ namespace App\Services;
 use App\Jobs\SendEmailForgotPassword;
 use App\Models\PasswordResetToken;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductView;
+use App\Models\StoreVisitor;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +25,9 @@ class DashboardService
             $response = [
                 'visitors' => [
                     'product' => Product::where(['store_id' => $user->store->id, 'is_active' => 1])->count(),
-                    'visitor' => ProductView::where(['store_id' => $user->store->id])->sum('views')
+                    'visitor' => ProductView::where(['store_id' => $user->store->id])->sum('views'),
+                    'category' => ProductCategory::where(['store_id' => $user->store->id, 'is_active' => 1])->count(),
+                    'total_click' => ProductView::where(['store_id' => $user->store->id])->sum('views')
                 ]
             ];
 
