@@ -28,7 +28,9 @@ class CreateBioLinkRequest extends FormRequest
         return [
             'link' => ['required_if:type,link', 'url', 'max:700', 'not_shortlink'],
             'name' => 'required|max:40',
-            'type' => 'required|in:headline,link'
+            'type' => 'required|in:headline,link',
+            'is_active' => 'required|in:1,0'
+
         ];
     }
     public function messages(): array
@@ -41,7 +43,9 @@ class CreateBioLinkRequest extends FormRequest
             'name.required' => 'Text tautan perlu diisi.',
             'name.max' => 'Text tautan tidak boleh lebih dari 40 karakter.',
             'type.required' => 'Tipe perlu diisi.',
-            'type.in' => 'Tipe harus salah satu dari: headline, link.'
+            'type.in' => 'Tipe harus salah satu dari: headline, link.',
+            'is_active.required' => 'Status perlu diisi.',
+            'is_active.in' => 'Status tidak valid',
         ];
     }
 

@@ -59,6 +59,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/', [BioLinkController::class, 'index']);
             Route::post('/create', [BioLinkController::class, 'create']);
             Route::post('/update/{id}', [BioLinkController::class, 'update']);
+            Route::post('/update-status/{id}', [BioLinkController::class, 'updateStatus']);
             Route::delete('/delete/{id}', [BioLinkController::class, 'delete']);
             Route::get('/{id}', [BioLinkController::class, 'show']);
         });

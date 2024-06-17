@@ -65,6 +65,7 @@ class BioLinkService
                 'name' => $data['name'],
                 'link' => $data['link'],
                 'type' => $data['type'],
+                'is_active' => $data['is_active'],
                 'sequence' => $sequence + 1,
 
             ]);
@@ -93,6 +94,8 @@ class BioLinkService
             $bioLink->update([
                 'name' => $data['name'],
                 'link' => $data['link'],
+                'is_active' => $data['is_active'],
+
             ]);
 
             return [true, 'Link berhasil diperbaharui', []];
@@ -149,6 +152,36 @@ class BioLinkService
             ];
             return [true, 'Detail link', $response];
         } catch (\Throwable $exception) {
+            Log::error($exception);
+            return [false, 'Server is busy right now!', []];
+        }
+    }
+
+    public function updateStatusBioLink($data, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $user = auth()->user();
+            $storeId = $user->store->id;
+            $biolink = BioLink::where(['id' => $id, 'store_id' => $storeId])->first();
+            if (!$biolink) {
+                return [false, 'Link tidak ditemukan', []];
+            }
+
+            if ($data['is_active'] == 1) {
+                $message = "diaktifkan";
+            } else {
+                $message = "dinonaktifkan";
+            }
+            //> create produk
+            $biolink->update([
+                'is_active' => $data['is_active'],
+            ]);
+
+            DB::commit();
+            return [true, 'Link berhasil ' . $message, []];
+        } catch (\Throwable $exception) {
+            DB::rollBack();
             Log::error($exception);
             return [false, 'Server is busy right now!', []];
         }

@@ -28,6 +28,7 @@ class UpdateBioLinkRequest extends FormRequest
         return [
             'link' => ['sometimes', 'url', 'max:700', 'not_shortlink'],
             'name' => 'required|max:40',
+            'is_active' => 'required|in:1,0'
         ];
     }
 
@@ -39,6 +40,8 @@ class UpdateBioLinkRequest extends FormRequest
             'link.not_shortlink' => 'Untuk menjaga kenyamanan pengunjung toko anda, kami tidak mengizinkan link yang berasal dari domain shortlink.',
             'name.required' => 'Text tautan perlu diisi.',
             'name.max' => 'Text tautan tidak boleh lebih dari 40 karakter.',
+            'is_active.required' => 'Status perlu diisi.',
+            'is_active.in' => 'Status tidak valid',
         ];
     }
 
