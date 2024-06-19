@@ -117,6 +117,30 @@ class AuthUserService
             return [false, 'Server is busy right now', []];
         }
     }
+    public function checkEmailAvailable($email): array
+    {
+        try {
+            $user = User::whereEmail($email)->first();
+
+            $status = null;
+            if (!$user) {
+                $status = true;
+            } else {
+                if ($user->status == User::STATUS_UNVERIFIED) {
+                    $status = false;
+                }
+            }
+
+            $response = [
+                'email' => $email,
+                'status' => $status
+            ];
+            return [true, 'Check ketersediaan email', $response];
+        } catch (\Throwable $exception) {
+            Log::error($exception);
+            return [false, 'Server is busy right now', []];
+        }
+    }
 
     public function otpConfirmation($code, $email)
     {

@@ -92,6 +92,7 @@ Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/otp-confirmation', [AuthController::class, 'otpCodeConfirmation']);
     Route::post('/otp-confirmation-resend', [AuthController::class, 'resendOtpCode']);
+    Route::post('/check-email-available', [AuthController::class, 'checkEmailAvailable']);
 
     //> auth google
     Route::get('google', [AuthController::class, 'redirectToGoogle'])->name('login.google');

@@ -121,4 +121,13 @@ class AuthController extends Controller
 
         return ResponseJson::successResponse('Berhasil logout', []);
     }
+
+    public function checkEmailAvailable(Request $request)
+    {
+        [$proceed, $message, $data] = (new AuthUserService())->checkEmailAvailable($request->email);
+        if (!$proceed) {
+            return ResponseJson::failedResponse($message, $data);
+        }
+        return ResponseJson::successResponse($message, $data);
+    }
 }
