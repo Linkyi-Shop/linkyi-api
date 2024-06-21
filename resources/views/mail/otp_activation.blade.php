@@ -22,13 +22,13 @@
     <tr>
         <td style="padding: 18px 24px;text-align: center;">
             <input
-                style="width: 20%; text-align: center;padding: 12px 24px; outline: none; text-decoration: none; font-size: 18px; letter-spacing: 0.7px; transition: all 0.3s; font-weight: 600; border-radius: 6px; background-color: #ffffff; border: 1px solid #2f55d4; color: #2f55d4"
+                style="width: 25%; text-align: center;padding: 12px 24px; outline: none; text-decoration: none; font-size: 18px; letter-spacing: 0.7px; transition: all 0.3s; font-weight: 600; border-radius: 6px; background-color: #ffffff; border: 1px solid #2f55d4; color: #2f55d4"
                 readonly value="{{ $code }}">
         </td>
     </tr>
 
     <tr>
-        <td style="padding: 15px 24px 0; color: #353434;margin:bottom:10px">
+        <td style="padding: 15px 10px 0; color: #353434;margin:bottom:10px">
             Jika Anda tidak melakukannya, silahkan abaikan email ini atau
             hubungi customer service kami.
         </td>
