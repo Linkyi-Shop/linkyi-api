@@ -21,15 +21,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware(['checkStoreActivation'])->prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
 
-        //> sosial media
-        Route::prefix('social-media')->group(function () {
-            Route::get('/', [SocialMediaController::class, 'index']);
-            Route::post('/create', [SocialMediaController::class, 'create']);
-            Route::post('/update/{id}', [SocialMediaController::class, 'update']);
-            Route::delete('/delete/{id}', [SocialMediaController::class, 'delete']);
-            Route::get('/{id}', [SocialMediaController::class, 'show']);
-        });
-
         //> product category
         Route::prefix('product/category')->group(function () {
             Route::get('/', [ProductCategoryController::class, 'index']);
@@ -63,11 +54,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::delete('/delete/{id}', [BioLinkController::class, 'delete']);
             Route::get('/{id}', [BioLinkController::class, 'show']);
         });
-        //> themes
-        Route::prefix('themes')->group(function () {
-            Route::get('/', [ThemeController::class, 'index']);
-            Route::post('/apply/{id}', [ThemeController::class, 'apply']);
-        });
+
         Route::prefix('store')->group(function () {
             Route::post('/update', [StoreController::class, 'update']);
         });
